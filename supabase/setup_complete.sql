@@ -296,6 +296,16 @@ CREATE POLICY "affiliate_payments_admin" ON affiliate_payments FOR ALL
   USING (get_my_role() = 'admin');
 
 -- ============================================================
+-- GRANTS (ให้ service_role และ authenticated เข้าถึง tables)
+-- ============================================================
+
+GRANT USAGE ON SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL   ON ALL TABLES    IN SCHEMA public TO postgres, service_role;
+GRANT ALL   ON ALL SEQUENCES IN SCHEMA public TO postgres, service_role;
+GRANT SELECT ON ALL TABLES   IN SCHEMA public TO anon, authenticated;
+GRANT INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO authenticated;
+
+-- ============================================================
 -- STORAGE
 -- ============================================================
 
