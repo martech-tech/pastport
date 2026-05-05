@@ -11,7 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { getInitials } from "@/lib/utils"
 
 export function UserNavbar() {
-  const { user, profile, signOut } = useAuth()
+  const { user, profile, loading, signOut } = useAuth()
   const router = useRouter()
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -44,7 +44,9 @@ export function UserNavbar() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2">
-            {user && profile ? (
+            {loading ? (
+              <div className="h-8 w-20 rounded-md bg-slate-100 animate-pulse" />
+            ) : user ? (
               <>
                 <Button variant="ghost" size="icon" className="relative">
                   <Bell className="h-5 w-5 text-slate-600" />
@@ -54,10 +56,12 @@ export function UserNavbar() {
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="gap-2 px-2">
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={profile.avatar_url} />
-                        <AvatarFallback>{getInitials(profile.full_name)}</AvatarFallback>
+                        <AvatarImage src={profile?.avatar_url ?? ""} />
+                        <AvatarFallback>{getInitials(profile?.full_name ?? user.email ?? "U")}</AvatarFallback>
                       </Avatar>
-                      <span className="hidden sm:block text-sm font-medium">{profile.full_name}</span>
+                      <span className="hidden sm:block text-sm font-medium">
+                        {profile?.full_name ?? user.email}
+                      </span>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
@@ -73,12 +77,12 @@ export function UserNavbar() {
               </>
             ) : (
               <div className="flex items-center gap-2">
-                <Link href="/login">
-                  <Button variant="ghost" size="sm">เข้าสู่ระบบ</Button>
-                </Link>
-                <Link href="/register/student">
-                  <Button size="sm">สมัครสมาชิก</Button>
-                </Link>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link href="/login">เข้าสู่ระบบ</Link>
+                </Button>
+                <Button size="sm" asChild>
+                  <Link href="/register/student">สมัครสมาชิก</Link>
+                </Button>
               </div>
             )}
             <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
