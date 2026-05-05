@@ -48,9 +48,9 @@ const COVERS = {
 // Affiliate users
 // ============================================================
 const AFFILIATES = [
-  { email: "affiliate1@pastport.demo", password: "Demo1234!", full_name: "พรทิพย์ ใจดี",        school: "โรงเรียนเตรียมอุดมศึกษา",      phone: "081-234-5678" },
-  { email: "affiliate2@pastport.demo", password: "Demo1234!", full_name: "ณัฐพล สมบูรณ์ทรัพย์", school: "โรงเรียนสวนกุหลาบวิทยาลัย",    phone: "082-345-6789" },
-  { email: "affiliate3@pastport.demo", password: "Demo1234!", full_name: "สุภาวดี รักการเรียน", school: "โรงเรียนมหิดลวิทยานุสรณ์",     phone: "083-456-7890" },
+  { email: "affiliate1@pastport.demo", password: "444444", full_name: "พรทิพย์ ใจดี",        school: "โรงเรียนเตรียมอุดมศึกษา",      phone: "081-234-5678" },
+  { email: "affiliate2@pastport.demo", password: "444444", full_name: "ณัฐพล สมบูรณ์ทรัพย์", school: "โรงเรียนสวนกุหลาบวิทยาลัย",    phone: "082-345-6789" },
+  { email: "affiliate3@pastport.demo", password: "444444", full_name: "สุภาวดี รักการเรียน", school: "โรงเรียนมหิดลวิทยานุสรณ์",     phone: "083-456-7890" },
 ]
 
 // ============================================================
