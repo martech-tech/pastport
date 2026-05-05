@@ -32,6 +32,9 @@ const AUDIO = [
   "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
 ]
 
+// Demo PDF (mozilla/pdf.js test file — CORS-friendly, 14 pages)
+const DEMO_PDF = "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"
+
 // Cover images (Unsplash — free)
 const COVERS = {
   med:   "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop&q=80",
@@ -246,7 +249,7 @@ async function seed() {
       affiliate_id: affiliateId,
       title: p.title, owner_name: p.owner_name, faculty: p.faculty,
       university: p.university, school: p.school, tags: p.tags,
-      cover_image_url: p.cover, is_admitted: p.is_admitted,
+      cover_image_url: p.cover, pdf_url: DEMO_PDF, is_admitted: p.is_admitted,
       status: "approved", is_visible: true,
       view_count: Math.floor(Math.random() * 2000) + 100,
       like_count: Math.floor(Math.random() * 200) + 10,
