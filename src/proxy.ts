@@ -23,7 +23,7 @@ export async function proxy(req: NextRequest) {
     }
   )
 
-  const { data: { session } } = await supabase.auth.getSession()
+  const { data: { user } } = await supabase.auth.getUser()
 
   const { pathname } = req.nextUrl
 
@@ -31,24 +31,24 @@ export async function proxy(req: NextRequest) {
   const isPublicPath = publicPaths.some(p => pathname.startsWith(p))
 
   // Not logged in → block admin/affiliate
-  if (!session && (pathname.startsWith("/admin") || pathname.startsWith("/affiliate"))) {
+  if (!user && (pathname.startsWith("/admin") || pathname.startsWith("/affiliate"))) {
     return NextResponse.redirect(new URL("/login", req.url))
   }
 
-  const role = session?.user?.user_metadata?.role as string | undefined
+  const role = user?.user_metadata?.role as string | undefined
 
   // Logged in + on public/auth page → redirect to portal
-  if (session && isPublicPath) {
+  if (user && isPublicPath) {
     if (role === "admin") return NextResponse.redirect(new URL("/admin", req.url))
     if (role === "affiliate") return NextResponse.redirect(new URL("/affiliate", req.url))
     return NextResponse.redirect(new URL("/home", req.url))
   }
 
   // Role protection
-  if (session && pathname.startsWith("/admin") && role !== "admin") {
+  if (user && pathname.startsWith("/admin") && role !== "admin") {
     return NextResponse.redirect(new URL("/home", req.url))
   }
-  if (session && pathname.startsWith("/affiliate") && role !== "affiliate") {
+  if (user && pathname.startsWith("/affiliate") && role !== "affiliate") {
     return NextResponse.redirect(new URL("/home", req.url))
   }
 

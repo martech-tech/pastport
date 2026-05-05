@@ -72,12 +72,12 @@ export default function AffiliateDashboard() {
           <h1 className="text-2xl font-bold text-slate-900">สวัสดี, {profile?.full_name}</h1>
           <p className="text-slate-500 mt-1">ภาพรวม Portfolio ของคุณ</p>
         </div>
-        <Link href="/affiliate/submit">
-          <Button>
+        <Button asChild>
+          <Link href="/affiliate/submit">
             <Plus className="h-4 w-4 mr-2" />
             ส่ง Portfolio ใหม่
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       {/* Stat Cards */}
@@ -133,9 +133,9 @@ export default function AffiliateDashboard() {
           <Card className="p-12 text-center">
             <Plus className="h-10 w-10 text-slate-300 mx-auto mb-4" />
             <p className="text-slate-500 mb-4">ยังไม่มี portfolio</p>
-            <Link href="/affiliate/submit">
-              <Button>ส่ง Portfolio แรกของคุณ</Button>
-            </Link>
+            <Button asChild>
+              <Link href="/affiliate/submit">ส่ง Portfolio แรกของคุณ</Link>
+            </Button>
           </Card>
         ) : (
           <div className="space-y-3">
@@ -202,12 +202,12 @@ export default function AffiliateDashboard() {
                         </div>
                       )}
                       {(port.status === "approved" || port.status === "revision_needed") && (
-                        <Link href={`/affiliate/portfolios/${port.id}/edit`}>
-                          <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" asChild>
+                          <Link href={`/affiliate/portfolios/${port.id}/edit`}>
                             <Edit2 className="h-3.5 w-3.5 mr-1" />
                             แก้ไข
-                          </Button>
-                        </Link>
+                          </Link>
+                        </Button>
                       )}
                     </div>
                   </div>

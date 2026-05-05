@@ -46,7 +46,7 @@ export function BannerAd({ ads, compact = false }: BannerAdProps) {
         onClick={handleClick}
       >
         {ad.image_url ? (
-          <Image src={ad.image_url} alt={ad.title} fill className="object-cover" />
+          <Image src={ad.image_url} alt={ad.title} fill sizes="200px" className="object-cover" />
         ) : (
           <div className="flex items-center gap-2 text-indigo-600">
             <ExternalLink className="h-4 w-4" />
@@ -62,7 +62,7 @@ export function BannerAd({ ads, compact = false }: BannerAdProps) {
     <div className="relative rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-gradient-to-r from-indigo-600 to-purple-600 cursor-pointer" onClick={handleClick}>
       <div className="relative h-32 sm:h-44">
         {ad.image_url ? (
-          <Image src={ad.image_url} alt={ad.title} fill className="object-cover" />
+          <Image src={ad.image_url} alt={ad.title} fill loading="eager" sizes="(max-width: 640px) 100vw, 1200px" className="object-cover" />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">
